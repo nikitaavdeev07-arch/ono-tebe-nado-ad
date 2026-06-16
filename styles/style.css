@@ -1,31 +1,3 @@
-header{
-  position: relative;
-  width: 1100px;
-  height: 293px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-}
-
-.logo img{
-    width: 135px;
-    height: auto;
-    
-}
-
-.logo-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 135px; 
-  height: auto;
-  flex-shrink: 0;
-  text-align: center;
-}
-
 header {
   position: relative;
   width: 1100px;
@@ -36,79 +8,90 @@ header {
   justify-content: space-between;
 }
 
-.menu {
-    flex: 1;
-    display: flex;
-    list-style-type: circle;
-    padding-left: 86px;
-    margin: 0;
-    gap: 29px;
-    white-space: nowrap;
-    font-size: 18px;
+.logo img {
+  width: 135px;
+  height: auto;
 }
 
+.logo-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 135px;
+  height: auto;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.menu {
+  flex: 1;
+  display: flex;
+  list-style-type: circle;
+  padding-left: 86px;
+  margin: 0;
+  gap: 29px;
+  white-space: nowrap;
+  font-size: 18px;
+}
 
 .menu li {
-    list-style-type: circle; 
+  list-style-type: circle;
 }
 
 .menu li:first-child {
-    list-style-type: none !important;
+  list-style-type: none !important;
 }
-
 
 .menu a {
-    text-decoration: none;
-    color: #000;
-    font-weight: 500;
-    transition: color 0.3s ease;
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
-
 
 .menu li:not(:first-child) a {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
-
 
 .menu li:first-child a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-address{
+address {
   padding-right: 100px;
   min-width: 300px;
   flex-shrink: 0;
   font-size: 18px;
   line-height: 1.4;
   font-style: normal;
-
 }
 
-p{
-    font-family: Raleway;
+p {
+  font-family: Raleway;
 }
 
-a{
-    text-decoration-thickness: 1px; 
-    text-underline-offset: 2px;    
-    text-decoration-color: black;  
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  text-decoration-color: black;
 }
 
 .cover {
   display: block;
-  width: 100%;      
+  width: 100%;
   height: 757px;
   background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
                     url('../images/cover.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  color: white;     
+  color: white;
   padding: 50px 100px;
   box-sizing: border-box;
-  position: relative; 
+  position: relative;
 }
 
 .title {
@@ -134,43 +117,42 @@ a{
   justify-self: end;
 }
 
-.description{
-    display: flex;
-    gap: 60px;
+.description {
+  display: flex;
+  gap: 60px;
 }
 
-.description h2{
-    word-spacing:17px;
-    text-transform: uppercase;
-    font-weight: 100;
-    margin-top: 110px;
-    font-size: 22px;
+.description h2 {
+  word-spacing: 17px;
+  text-transform: uppercase;
+  font-weight: 100;
+  margin-top: 110px;
+  font-size: 22px;
 }
-
 
 button {
   margin-top: 100px;
   height: 50px;
-  background: transparent; 
-  border: 2px solid white; 
-  color: white; 
-  text-transform: uppercase; 
-  padding: 10px 30px; 
-  font-size: 16px; 
-  cursor: pointer; 
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  text-transform: uppercase;
+  padding: 10px 30px;
+  font-size: 16px;
+  cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
 button:hover {
-  background: white; 
-  color: black; 
+  background: white;
+  color: black;
 }
 
 .lots {
-    margin-top: 120px; 
-    font-family: Raleway;
-    font-size: 20px;
-    font-style: 400;
+  margin-top: 120px;
+  font-family: Raleway;
+  font-size: 20px;
+  font-style: 400;
 }
 
 .lots-list {
@@ -183,7 +165,7 @@ button:hover {
 
 .lot {
   flex: 1;
-  min-height: 596px; 
+  min-height: 596px;
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -197,6 +179,7 @@ button:hover {
   font-family: Raleway;
   font-size: 20px;
 }
+
 .lot-film {
   background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
   url('../images/card-lot-01.jpg');
@@ -212,204 +195,200 @@ button:hover {
   url('../images/card-lot-03.jpg');
 }
 
-.lot h2{
-    font-size: 22px;
-    font-family: Raleway;
-    font-style: bold;
-    font-weight: 700;
-    text-decoration: underline solid;
+.lot h2 {
+  font-size: 22px;
+  font-family: Raleway;
+  font-style: bold;
+  font-weight: 700;
+  text-decoration: underline solid;
 }
 
 .lots_title {
-    margin-left: 40px;
-    margin-bottom: 50px; 
-    font-size: 40px;
-    font-weight: 700;
-    text-align: left; 
-    font-family: Raleway;
-    font-size: 40px;
-    text-transform: uppercase;
-
+  margin-left: 40px;
+  margin-bottom: 50px;
+  font-size: 40px;
+  font-weight: 700;
+  text-align: left;
+  font-family: Raleway;
+  text-transform: uppercase;
 }
 
-.lots a{
-    margin-left: 40px;
+.lots a {
+  margin-left: 40px;
 }
 
 .about {
-    max-width: 1100px;
-    width: 100%;
-    display: flex;
-    margin: 0 auto;
-    padding: 40px 20px;
-    gap: 40px;
-    align-items: flex-start;
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  padding: 40px 20px;
+  gap: 40px;
+  align-items: flex-start;
 }
 
 .about_logo {
-    margin-top: 80px;
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
-    background-color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    overflow: hidden;
-    border: 2px solid #333;
-    position: relative;
+  margin-top: 80px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 2px solid #333;
+  position: relative;
 }
 
 .about_logo img {
-    max-width: 148px;
-    max-height: auto;
-    object-fit: contain;
+  max-width: 148px;
+  max-height: auto;
+  object-fit: contain;
 }
 
 .about_content-wrapper {
-    flex: 1;
-    margin-top: 160px;
+  flex: 1;
+  margin-top: 160px;
 }
 
 .about_title {
-    font-family: Raleway;
-    font-size: 40px;
-    font-weight: 700;
-    margin-bottom: 30px;
-    color: #000;
+  font-family: Raleway;
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #000;
 }
 
 .about_content {
-    font-family: Raleway;
-    font-weight: 400;
-    font-size: 20px;
-    color: #000000;
-    text-align: justify;
+  font-family: Raleway;
+  font-weight: 400;
+  font-size: 20px;
+  color: #000000;
+  text-align: justify;
 }
 
 .about_content p {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 footer {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    background-color: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #fff;
 }
 
 .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
 }
 
 .footer-section {
-    flex: 1;
+  flex: 1;
 }
 
 .address-section {
-    display: flex;
-    justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .menu-section {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .social-section {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .menu1-list {
-    text-align: center;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    line-height: 50%;
+  text-align: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  line-height: 50%;
 }
 
 .menu1-list li {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .menu1-list li:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .menu1-list a {
-    color: #000;
-    font-size: 18px;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    display: inline-block;
-    padding: 5px 0;
-    text-decoration: underline; 
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  display: inline-block;
+  padding: 5px 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 .menu1-list a.no-underline,
 .menu1-list li:first-child a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-
 .address1 {
-    font-style: normal;
-    font-size: 17px;
-    text-align: left;
+  font-style: normal;
+  font-size: 17px;
+  text-align: left;
 }
 
 .address1 p {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .address1 a {
-    color: #000;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
+  color: #000;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 .social-logos {
-    text-align: right;
+  text-align: right;
 }
 
 .social-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
 }
 
 .social-logo {
-    display: inline-block;
-    margin-left: 48px;
-    text-decoration: none;
-    transition: opacity 0.3s ease;
+  display: inline-block;
+  margin-left: 48px;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
 }
 
 .social-logo:first-child {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 .social-logo img {
-    width: 60px;
-    height: 60px;
-    display: block;
-    transition: transform 0.3s ease;
+  width: 60px;
+  height: 60px;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
 .social-logo:hover img {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .social-logo:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
-
