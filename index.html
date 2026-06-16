@@ -1,10 +1,646 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Оно тебе надо — аукцион вещей, в которые никто не верил</title>
-  </head>
-  <body></body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оно тебе надо — аукцион вещей, в которые никто не верил</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      min-width: 1100px;
+      background: #ffffff;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .address {
+      font-style: normal;
+      font-size: 18px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 400;
+      color: #000000;
+    }
+
+    .address a {
+      color: #000000;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .address p {
+      margin: 0;
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: 1fr min-content 1fr;
+      align-items: center;
+      padding: 92px 50px 0 50px;
+      margin-bottom: 90px;
+      box-sizing: border-box;
+    }
+
+    .header__logo {
+      display: block;
+      width: 148px;
+      height: 105px;
+    }
+
+    .header__logo-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .header__menu {
+      justify-self: start;
+    }
+
+    .header__links-list {
+      display: flex;
+      gap: 32px;
+      list-style: circle;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .header__links-list-item {
+      list-style: circle;
+    }
+
+    .header__links-list-item_no-bullit {
+      list-style: none;
+    }
+
+    .header__link {
+      color: #000000;
+      text-decoration: underline;
+      font-size: 18px;
+      font-weight: 400;
+      text-underline-offset: 4px;
+    }
+
+    .header__link_active {
+      text-decoration: none;
+    }
+
+    .header__address {
+      justify-self: end;
+      max-width: 240px;
+    }
+
+    .cover {
+      position: relative;
+      padding: 165px 50px 50px 50px;
+      min-height: 757px;
+      box-sizing: border-box;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    .cover__background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      object-fit: cover;
+    }
+
+    .cover__title {
+      position: relative;
+      z-index: 2;
+      font-weight: 700;
+      font-size: 100px;
+      letter-spacing: 30px;
+      text-transform: uppercase;
+      margin: 0;
+      padding: 0;
+      line-height: 1.1;
+      color: #ffffff;
+    }
+
+    .aligned-text {
+      display: block;
+      text-align: left;
+    }
+
+    .aligned-text_center {
+      display: block;
+      text-align: center;
+    }
+
+    .aligned-text_right {
+      display: block;
+      text-align: right;
+    }
+
+    .cover__description {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 78px;
+      margin-top: 120px;
+    }
+
+    .cover__description-text {
+      font-weight: 400;
+      font-size: 22px;
+      word-spacing: 18px;
+      text-transform: uppercase;
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .bet-button {
+      font-weight: 500;
+      font-size: 22px;
+      text-transform: uppercase;
+      color: #ffffff;
+      background: transparent;
+      border: 1px solid #ffffff;
+      padding: 12px 32px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .bet-button:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .lots {
+      padding: 180px 24px 0 24px;
+      color: #000000;
+    }
+
+    .lots__heading {
+      font-weight: 700;
+      font-size: 40px;
+      text-transform: uppercase;
+      margin: 0 0 27px 40px;
+    }
+
+    .lots__card-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .lots__card-list-item {
+      width: 334px;
+      min-height: 596px;
+      flex-grow: 1;
+      list-style: none;
+    }
+
+    .card-link {
+      display: block;
+      height: 100%;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .card {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 50px 40px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .card__background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      object-fit: cover;
+    }
+
+    .card__title {
+      position: relative;
+      z-index: 2;
+      font-weight: 700;
+      font-size: 22px;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      margin: 0 0 4px 0;
+    }
+
+    .card__text {
+      position: relative;
+      z-index: 2;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .lots__look-more-link {
+      display: inline-block;
+      margin-top: 30px;
+      margin-left: 40px;
+      font-weight: 400;
+      font-size: 20px;
+      color: #000000;
+      text-underline-offset: 4px;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 334px 1fr;
+      gap: 25px;
+      padding: 100px 24px 0 24px;
+      color: #000000;
+    }
+
+    .about__column:first-child {
+      display: flex;
+      justify-content: center;
+    }
+
+    .about__logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 240px;
+      height: 240px;
+      background-color: #000000;
+      border-radius: 50%;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .about__logo-image {
+      width: 148px;
+      height: 105px;
+    }
+
+    .about__column:last-child {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .about__title {
+      font-weight: 700;
+      font-size: 40px;
+      text-transform: uppercase;
+      margin: 40px 0 0 0;
+    }
+
+    .about__text {
+      margin-top: 24px;
+    }
+
+    .about__text p {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 1.2;
+      margin: 0 0 24px 0;
+    }
+
+    .about__text p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      padding: 180px 50px 90px 50px;
+      color: #000000;
+    }
+
+    .footer .address {
+      justify-self: start;
+      max-width: 240px;
+    }
+
+    .footer__menu {
+      justify-self: center;
+    }
+
+    .footer__menu-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer__menu-list-item {
+      list-style: none;
+    }
+
+    .footer__menu-link {
+      color: #000000;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      font-size: 18px;
+    }
+
+    .footer__menu-link_active {
+      text-decoration: none;
+    }
+
+    .footer__social-list {
+      display: flex;
+      gap: 48px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      justify-self: end;
+    }
+
+    .footer__social-list-item {
+      list-style: none;
+      width: 48px;
+      height: 48px;
+    }
+
+    .footer__social-link {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .footer__social-icon {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="header__menu">
+      <ul class="header__links-list">
+        <li class="header__links-list-item header__links-list-item_no-bullit">
+          <a class="header__link header__link_active">Главная</a>
+        </li>
+        <li class="header__links-list-item">
+          <a class="header__link" href="#lots">Посмотреть лоты</a>
+        </li>
+        <li class="header__links-list-item">
+          <a class="header__link" href="#about">Об аукционе</a>
+        </li>
+      </ul>
+    </nav>
+    <a class="header__logo">
+      <svg class="header__logo-image" viewBox="0 0 148 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="35" font-family="Raleway, sans-serif" font-size="28" font-weight="700" fill="#000000">ОНО</text>
+        <text x="0" y="65" font-family="Raleway, sans-serif" font-size="28" font-weight="700" fill="#000000">ТЕБЕ</text>
+        <text x="0" y="95" font-family="Raleway, sans-serif" font-size="28" font-weight="700" fill="#000000">НАДО</text>
+        <rect x="0" y="98" width="148" height="2" fill="#000000"/>
+      </svg>
+    </a>
+    <address class="address header__address">
+      <a href="tel:+79995555555">+7 999 555 5555</a>
+      <br>
+      <a href="mailto:info@yandex.ru">info@yandex.ru</a>
+      <p>наб. Доваторцев 263-<br>265, Москва</p>
+    </address>
+  </header>
+
+  <main>
+    <section class="cover">
+      <svg class="cover__background" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="coverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#2d1b3d"/>
+            <stop offset="50%" stop-color="#1b1b2e"/>
+            <stop offset="100%" stop-color="#16213e"/>
+          </linearGradient>
+          <radialGradient id="coverGlow" cx="70%" cy="30%" r="60%">
+            <stop offset="0%" stop-color="#4a3f5c" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+          <pattern id="coverPattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+            <rect width="60" height="60" fill="none"/>
+            <circle cx="30" cy="30" r="1" fill="#ffffff" opacity="0.05"/>
+            <circle cx="0" cy="0" r="1" fill="#ffffff" opacity="0.05"/>
+            <circle cx="60" cy="0" r="1" fill="#ffffff" opacity="0.05"/>
+            <circle cx="0" cy="60" r="1" fill="#ffffff" opacity="0.05"/>
+            <circle cx="60" cy="60" r="1" fill="#ffffff" opacity="0.05"/>
+          </pattern>
+        </defs>
+        <rect width="1200" height="800" fill="url(#coverGradient)"/>
+        <rect width="1200" height="800" fill="url(#coverPattern)"/>
+        <rect width="1200" height="800" fill="url(#coverGlow)"/>
+        <g opacity="0.1">
+          <circle cx="200" cy="200" r="150" fill="none" stroke="#ffffff" stroke-width="1"/>
+          <circle cx="200" cy="200" r="100" fill="none" stroke="#ffffff" stroke-width="1"/>
+          <circle cx="200" cy="200" r="50" fill="none" stroke="#ffffff" stroke-width="1"/>
+        </g>
+        <g opacity="0.05">
+          <circle cx="900" cy="600" r="200" fill="none" stroke="#ffffff" stroke-width="2"/>
+          <circle cx="900" cy="600" r="150" fill="none" stroke="#ffffff" stroke-width="2"/>
+          <circle cx="900" cy="600" r="100" fill="none" stroke="#ffffff" stroke-width="2"/>
+        </g>
+      </svg>
+      <div class="overlay"></div>
+      <h1 class="cover__title">
+        <span class="aligned-text">оно</span>
+        <span class="aligned-text_center">тебе</span>
+        <span class="aligned-text_right">надо</span>
+      </h1>
+      <div class="cover__description">
+        <p class="cover__description-text">Аукцион вещей, в которые никто не верил</p>
+        <button class="bet-button" type="button">Сделать ставку</button>
+      </div>
+    </section>
+
+    <section class="lots" id="lots">
+      <h2 class="lots__heading">Лоты</h2>
+      <ul class="lots__card-list">
+        <li class="lots__card-list-item">
+          <a class="card-link" href="#">
+            <article class="card">
+              <svg class="card__background" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="filmGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#1a1a2e"/>
+                    <stop offset="50%" stop-color="#16213e"/>
+                    <stop offset="100%" stop-color="#0f3460"/>
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="600" fill="url(#filmGradient)"/>
+                <rect x="50" y="50" width="300" height="200" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
+                <rect x="150" y="250" width="100" height="100" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
+                <circle cx="200" cy="450" r="40" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
+                <g opacity="0.2">
+                  <line x1="100" y1="150" x2="300" y2="150" stroke="#ffffff" stroke-width="1"/>
+                  <line x1="100" y1="170" x2="280" y2="170" stroke="#ffffff" stroke-width="1"/>
+                  <line x1="100" y1="190" x2="250" y2="190" stroke="#ffffff" stroke-width="1"/>
+                  <line x1="100" y1="210" x2="220" y2="210" stroke="#ffffff" stroke-width="1"/>
+                </g>
+              </svg>
+              <div class="overlay"></div>
+              <h3 class="card__title">Фильм режиссёра, который бросил киношколу</h3>
+              <p class="card__text">Не просто бросил, а ушёл с первой лекции. Какой была бы ваша ставка, если бы вы не знали, что режиссёр — Пол Томас Андерсон?</p>
+            </article>
+          </a>
+        </li>
+        <li class="lots__card-list-item">
+          <a class="card-link" href="#">
+            <article class="card">
+              <svg class="card__background" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2d1b3d"/>
+                    <stop offset="50%" stop-color="#1b1b2e"/>
+                    <stop offset="100%" stop-color="#4a1942"/>
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="600" fill="url(#bookGradient)"/>
+                <rect x="100" y="100" width="200" height="300" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
+                <line x1="120" y1="150" x2="280" y2="150" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+                <line x1="120" y1="180" x2="280" y2="180" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+                <line x1="120" y1="210" x2="260" y2="210" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+                <line x1="120" y1="240" x2="270" y2="240" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+                <line x1="120" y1="270" x2="250" y2="270" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+                <line x1="200" y1="300" x2="280" y2="300" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+                <circle cx="200" cy="450" r="30" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.2"/>
+              </svg>
+              <div class="overlay"></div>
+              <h3 class="card__title">Книга, где описан один скучный день из жизни рекламного агента</h3>
+              <p class="card__text">Объёмом почти в тысячу страниц. Иногда без знаков препинания и с переходами на древнеанглийский. В ней одновременно рассказывается о 16 июня 1904 года и об истории литературы, начиная с античных времён. И это всё накладывается на эпическую поэму Гомера. Сколько бы вы поставили на «Улисса» Джеймса Джойса?</p>
+            </article>
+          </a>
+        </li>
+        <li class="lots__card-list-item">
+          <a class="card-link" href="#">
+            <article class="card">
+              <svg class="card__background" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="pictureGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#1a1a2e"/>
+                    <stop offset="50%" stop-color="#16213e"/>
+                    <stop offset="100%" stop-color="#0a3d62"/>
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="600" fill="url(#pictureGradient)"/>
+                <rect x="100" y="100" width="200" height="200" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
+                <circle cx="200" cy="200" r="60" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
+                <line x1="100" y1="200" x2="300" y2="200" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+                <line x1="200" y1="100" x2="200" y2="300" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+                <circle cx="140" cy="140" r="15" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+                <circle cx="260" cy="260" r="15" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+                <rect x="150" y="350" width="100" height="80" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.2"/>
+                <line x1="150" y1="390" x2="250" y2="390" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+                <line x1="150" y1="370" x2="230" y2="370" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+              </svg>
+              <div class="overlay"></div>
+              <h3 class="card__title">Картина, которую повторит даже 5-летний сын маминой подруги</h3>
+              <p class="card__text">Ну действительно, там линия, тут кружочек, а здесь и вовсе что-то похожее на инфузорию-туфельку. Никаких полей, лесов, космических кораблей и, конечно же, котов. Согласны? Ставки принимаются!</p>
+            </article>
+          </a>
+        </li>
+      </ul>
+      <a class="lots__look-more-link" href="#">посмотреть больше</a>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about__column">
+        <div class="about__logo">
+          <svg class="about__logo-image" viewBox="0 0 148 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="35" font-family="Raleway, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">ОНО</text>
+            <text x="0" y="65" font-family="Raleway, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">ТЕБЕ</text>
+            <text x="0" y="95" font-family="Raleway, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">НАДО</text>
+            <rect x="0" y="98" width="148" height="2" fill="#FFFFFF"/>
+          </svg>
+        </div>
+      </div>
+      <div class="about__column">
+        <h2 class="about__title">Об аукционе</h2>
+        <div class="about__text">
+          <p>Здесь вы не встретите очередное пафосное собрание невероятно дорогого антиквариата. Наши лоты вообще не должны были попасть ни на один аукцион. Потому что кому нужен дневник девочки-подростка или картина, которую может нарисовать даже ребёнок? Кому нужны все эти странные вещи, созданные любителями?</p>
+          <p>Слишком сложные или, наоборот, слишком простые. Опережающие своё время. В пух и прах растерзанные критиками. Непринятые и непонятые. Когда-то они казались просто неудачными. Но, несмотря на критику, кажущуюся простоту или сложность, сейчас без этих лотов невозможно представить современную культуру. Когда в эти вещи не верил никто, продолжали верить их создатели. И сейчас эти лоты стали культовыми.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <address class="address">
+      <a href="tel:+79995555555">+7 999 555 5555</a>
+      <br>
+      <a href="mailto:info@yandex.ru">info@yandex.ru</a>
+      <p>наб. Доваторцев 263-<br>265, Москва</p>
+    </address>
+    <nav class="footer__menu">
+      <ul class="footer__menu-list">
+        <li class="footer__menu-list-item">
+          <a class="footer__menu-link footer__menu-link_active">Главная</a>
+        </li>
+        <li class="footer__menu-list-item">
+          <a class="footer__menu-link" href="#lots">Посмотреть лоты</a>
+        </li>
+        <li class="footer__menu-list-item">
+          <a class="footer__menu-link" href="#about">Об аукционе</a>
+        </li>
+      </ul>
+    </nav>
+    <ul class="footer__social-list">
+      <li class="footer__social-list-item">
+        <a class="footer__social-link" href="#" target="_blank">
+          <svg class="footer__social-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="4" fill="#000000"/>
+            <path d="M24 12C24 12 14 12 14 24C14 36 24 36 24 36C24 36 34 36 34 24C34 12 24 12 24 12Z" fill="#FF0000"/>
+            <path d="M28 24L21 20V28L28 24Z" fill="#FFFFFF"/>
+          </svg>
+        </a>
+      </li>
+      <li class="footer__social-list-item">
+        <a class="footer__social-link" href="#" target="_blank">
+          <svg class="footer__social-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="4" fill="#000000"/>
+            <circle cx="24" cy="24" r="10" fill="#0077FF"/>
+            <circle cx="24" cy="24" r="6" fill="#FFFFFF"/>
+            <circle cx="24" cy="14" r="2" fill="#0077FF"/>
+            <rect x="14" y="14" width="20" height="20" rx="4" fill="none" stroke="#0077FF" stroke-width="3"/>
+          </svg>
+        </a>
+      </li>
+      <li class="footer__social-list-item">
+        <a class="footer__social-link" href="#" target="_blank">
+          <svg class="footer__social-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="4" fill="#000000"/>
+            <circle cx="24" cy="24" r="12" fill="#E60023"/>
+            <path d="M24 12C24 12 18 16 20 24C22 32 24 36 24 36C24 36 26 32 28 24C30 16 24 12 24 12Z" fill="#FFFFFF"/>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </footer>
+</body>
 </html>
